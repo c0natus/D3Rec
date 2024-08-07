@@ -122,10 +122,15 @@ def evaluate(args, model, diffusion, loader, gt_items, consumed_items, topK, ite
             batch_consumed_items = consumed_items[user_idx_list[start_batch_user_id:end_batch_user_id]]
 
             x_0 = x_0.to(args.device)
-            if temperature != 1:
-                prob_oracle = adjust_div(prob_oracle, temperature)
-            prob_oracle = prob_oracle.to(args.device)
-            x_0_hat = diffusion.sample_new_interaction(model, x_0, prob_oracle, args.guide_w,
+            
+            if is_best is True: 
+                if temperature != 1:
+                    prob = adjust_div(prob_oracle, temperature)
+                else:
+                    prob = prob_oracle
+            prob = prob.to(args.device)
+            
+            x_0_hat = diffusion.sample_new_interaction(model, x_0, prob, args.guide_w,
                                                        sampling_steps=args.sampling_steps,
                                                        sampling_noise=args.sampling_noise)
 
