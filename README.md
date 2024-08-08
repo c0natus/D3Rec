@@ -1,8 +1,14 @@
 # D3Rec
 
+### Import conda environment
+
+```bash
+conda env create -f d3rec_env.yml
+```
+
 ## Real-world experiments
 
-### preprocess
+### preprocess (It is already completed)
 1. Move `./datasets/[dataset name]/clean_df_C20.pt` to `./Real-world/datasets/[dataset name]/`
 2. Run `cd Real-world`
 3. Run `python preprocessing.py --dataset_name [dataset name]`
