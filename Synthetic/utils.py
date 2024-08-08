@@ -129,10 +129,15 @@ def evaluate(args, model, diffusion, loader, gt_items, consumed_items, topK, ite
                 else:
                     prob = prob_oracle
             prob = prob.to(args.device)
-            
-            x_0_hat = diffusion.sample_new_interaction(model, x_0, prob, args.guide_w,
-                                                       sampling_steps=args.sampling_steps,
-                                                       sampling_noise=args.sampling_noise)
+
+            if is_best is True:
+                x_0_hat = diffusion.sample_new_interaction(model, x_0, prob, args.guide_w,
+                                                           sampling_steps=args.sampling_steps,
+                                                           sampling_noise=args.sampling_noise)
+            else:
+                x_0_hat = diffusion.sample_new_interaction(model, x_0, prob, -0.5,
+                                                           sampling_steps=args.sampling_steps,
+                                                           sampling_noise=args.sampling_noise)
 
             x_0_hat[batch_consumed_items.nonzero()] = -np.inf
             _, indices = torch.topk(x_0_hat, topK[-1])
