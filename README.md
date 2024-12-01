@@ -1,4 +1,14 @@
-# D3Rec
+# Controlling Diversity at Inference: Guiding Diffusion Recommender Models with Targeted Category Preferences
+
+Gwangseok Han*, [Wonbin Kweon](https://wonbinkweon.github.io/)*, Minsoo Kim, Hwanjo Yu
+
+Accepted to KDD 2025 Research Track!
+
+Original implementation for [paper](https://arxiv.org/abs/2411.11240)
+
+## Getting Started
+
+Python 3.10
 
 ### Import conda environment
 
